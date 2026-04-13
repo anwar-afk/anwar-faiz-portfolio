@@ -8,6 +8,14 @@ import Particles from "./components/Particles";
 import Footer from "./components/Footer";
 
 export default function Hero() {
+  const handleOpenCv = () => {
+    const cvUrl = '/assets/cv/cvAnwarFaiz.pdf';
+    const openedWindow = window.open(cvUrl, '_blank', 'noopener,noreferrer');
+    if (!openedWindow) {
+      window.location.href = cvUrl;
+    }
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -55,9 +63,13 @@ export default function Hero() {
             <p className="text-lg text-white leading-relaxed">
               Portfolio saya berisi proyek-proyek yang telah saya kerjakan di pengembangan web dan aplikasi.
             </p>
-
-            <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 pointer-events-auto">
-              Hubungi Saya
+    
+            <button
+              type="button"
+              onClick={handleOpenCv}
+              className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 pointer-events-auto"
+            >
+              Lihat CV
             </button>
           </div>
 
@@ -70,7 +82,10 @@ export default function Hero() {
               status="Online"
               avatarUrl="/assets/images/FotoFaiz.jpeg"
               contactText="Contact Me"
-              onContactClick={() => console.log('Contact clicked')}
+              onContactClick={() => {
+                const contactSection = document.getElementById('contact');
+                contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
             />
           </div>
         </div>
